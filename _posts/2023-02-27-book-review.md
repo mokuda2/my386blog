@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  A Perspective on Meredith Broussard's _Artificial Unintelligence_
+title: A Perspective on Meredith Broussard's _Artificial Unintelligence_
 author: Michael Okuda
 description: Opinions on the differences between humans and machines and how machines are not necessarily better at doing certain tasks than humans
 image: /assets/images/artificial-unintelligence.png
