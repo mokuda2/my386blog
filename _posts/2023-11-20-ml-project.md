@@ -54,31 +54,7 @@ While neural networks can be accurate, it is a lot more difficult in terms of in
 
 For the PokeAPI dataset for binary classification between Fire type and Bug type, the model that performs best is KNN, which is surprising.  Below are metrics for accuracy, precision, and recall for the KNN, random forest, and ensemble models.
 
-```
-KNN:
-Training accuracy: 0.7966101694915254
-Testing accuracy: 0.8
-Training precision: 0.8176328502415459
-Testing precision: 0.8
-Training recall: 0.8029953917050692
-Testing recall: 0.8571428571428572
-
-Random forest:
-Training accuracy: 1.0
-Testing accuracy: 0.8
-Training precision: 1.0
-Testing precision: 0.8
-Training recall: 1.0
-Testing recall: 0.8571428571428572
-
-Ensemble:
-Training accuracy: 0.9576271186440678
-Testing accuracy: 0.7333333333333333
-Training precision: 0.959016393442623
-Testing precision: 0.7647058823529411
-Training recall: 0.9596774193548387
-Testing recall: 0.8095238095238095
-```
+![Figure](https://raw.githubusercontent.com/mokuda2/my386blog/main/assets/images/metrics-for-three-models.png)
 
 Below are the ROC curves for the KNN, random forest, and ensemble models, respectively:
 
