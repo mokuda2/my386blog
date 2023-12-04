@@ -16,7 +16,7 @@ What patterns can a player find to predict the type of a Pokémon he has never s
 
 [This article](https://medium.com/m2mtechconnect/classifying-pok%C3%A9mon-images-with-machine-learning-79b9bc07c080) has some great approaches to EDA for the image classification dataset.  I really liked the visualization of the different types for each Pokémon.  For simplification, only the first type is used to classify the type of a Pokémon.  According to the plot, water types are most common in the Kaggle dataset, while flying is the least common.
 
-(image)
+![Figure](https://raw.githubusercontent.com/mokuda2/my386blog/main/assets/images/number-of-types.png)
 
 From the data scraped off the PokeAPI website, any Pokémon game player knows that evolved forms of Pokémon have higher base stats than their pre-evolved forms.  To avoid the issue of the wide ranges of base stats among a Pokémon and its evolved forms, I used ratios of base stats.  For simplicity, I divided all base stats by speed except for speed itself.  In a way, it "standardizes" the base stats.  For example, Charmander has base stats of 52 for attack and 65 for speed, while its most evolved form Charizard has base stats of 84 for attack and 100 for speed.  Charmander's base stats are much lower than Charizard's, even though they are both Fire type.  Attack divided by speed gives Charmander a .80 ratio and Charizard a .84 ratio, which are much more similar.
 
@@ -33,8 +33,8 @@ Below are the following models I used for the PokeAPI dataset:
 
 * k-nearest neighbors: classifies a new data point based on a distance metric from the k closest data points.  Hyperparameters include the number of neighbors (k) and the distance metric.  When evaluating the model on predicting from all 18 types, the testing accuracy is .23.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is .8.
 * decision tree: classifies an instance by looking at conditions of the nodes until it reaches the bottom.  Hyperparameters include the depth of the tree and the criteria for measuring what feature should be used on the split.  When evaluating the model on predicting from all 18 types, the testing accuracy is .18.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is .7.
-* random forest: creates several decision trees through bagging and uses a subset of features to determine the branching off of each node.  Hyperparameters include the depth of the tree and the maximum number of features to consider when splitting.  When evaluating the model on predicting from all 18 types, the testing accuracy is .27.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is .
-* ensemble model: a model that uses several models to improve performance.  I used the KNN, decision tree, and random forest models to create the ensemble model.  Hyperparameters I used include the number of neighbors for the KNN model, the maximum depth of the tree for decision tree model, and the number of features to determine each split and the maximum depth of each tree for the random forest model.  When evaluating the model on predicting from all 18 types, the testing accuracy is .26.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is .
+* random forest: creates several decision trees through bagging and uses a subset of features to determine the branching off of each node.  Hyperparameters include the depth of the tree and the maximum number of features to consider when splitting.  When evaluating the model on predicting from all 18 types, the testing accuracy is .27.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is 86.
+* ensemble model: a model that uses several models to improve performance.  I used the KNN, decision tree, and random forest models to create the ensemble model.  Hyperparameters I used include the number of neighbors for the KNN model, the maximum depth of the tree for decision tree model, and the number of features to determine each split and the maximum depth of each tree for the random forest model.  When evaluating the model on predicting from all 18 types, the testing accuracy is .26.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is .73.
 * k-means clustering: assigns a data point to a cluster based on how close it is to other clusters.  The difference between KNN and clustering is that KNN has labeled data points for classification, whereas clustering simply groups data points together based on patterns and not on labels.  One important hyperparameter is the number of clusters.  When evaluating the model on predicting from all 18 types, the testing accuracy is .21.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is .55.
 * PCA: dimension reduction technique that reduces the features of a dataset while preserving as much variance in the data as possible.
 
@@ -48,7 +48,7 @@ For binary classification between Fire type and Bug type, training and testing a
 
 For the images dataset for binary classification, the model that performs better is the convolutional neural network.  Compared to the feed forward neural network, it makes sense because CNNs are typically used for image data, and FFNs only go forward in their neural networks.  One of the big differences between tuning a CNN model with a target variable with 18 outcomes and a CNN model with a binary target variable is that the last layer for the binary classification can be sigmoid, which is what logistic regression models use.  The binary classification model metrics for training and validation accuracies are shown below for the CNN model.  The testing accuracy is .71.
 
-(image)
+![Figure](https://raw.githubusercontent.com/mokuda2/my386blog/main/assets/images/cnn-graph.png)
 
 While neural networks can be accurate, it is a lot more difficult in terms of interpretability.  Tuning hyperparameters, such as the number of hidden layers or the activation functions, can help improve model performance, though it is hard to explain why a hyperparameter's value is best for the situation.
 
@@ -82,9 +82,11 @@ Testing recall: 0.8095238095238095
 
 Below are the ROC curves for the KNN, random forest, and ensemble models, respectively:
 
-(image)
-(image)
-(image)
+![Figure](https://raw.githubusercontent.com/mokuda2/my386blog/main/assets/images/knn-roc.png)
+
+![Figure](https://raw.githubusercontent.com/mokuda2/my386blog/main/assets/images/random-forest-roc.png)
+
+![Figure](https://raw.githubusercontent.com/mokuda2/my386blog/main/assets/images/ensemble-roc.png)
 
 For KNN, I left the hyperparameters at default, such as k=5.  The reason I'm surprised that the KNN model did the best is that the random forest and ensemble models are diverse in their ways of aggregating several predictions and models in hopes of improving performance.  For the random forest model, I did a grid search for the arguments of criterion, max_depth, max_features, and n_estimators.  For the ensemble model, I also did a grid search for the arguments of KNN's n_neighbors, decision tree's max_depth, and random forest's max_depth and n_estimators.  While random train-test splits of the data may improve the metrics of the random forest and ensemble models, the KNN model's performance shows that no single model can outperform all others in every situation, even random forests and ensemble methods.
 
