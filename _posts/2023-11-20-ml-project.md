@@ -36,6 +36,7 @@ Below are the following models I used for the PokeAPI dataset:
 * random forest: creates several decision trees through bagging and uses a subset of features to determine the branching off of each node.  Hyperparameters include the depth of the tree and the maximum number of features to consider when splitting.  When evaluating the model on predicting from all 18 types, the testing accuracy is .27.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is .
 * ensemble model: a model that uses several models to improve performance.  I used the KNN, decision tree, and random forest models to create the ensemble model.  Hyperparameters I used include the number of neighbors for the KNN model, the maximum depth of the tree for decision tree model, and the number of features to determine each split and the maximum depth of each tree for the random forest model.  When evaluating the model on predicting from all 18 types, the testing accuracy is .26.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is .
 * k-means clustering: assigns a data point to a cluster based on how close it is to other clusters.  The difference between KNN and clustering is that KNN has labeled data points for classification, whereas clustering simply groups data points together based on patterns and not on labels.  One important hyperparameter is the number of clusters.  When evaluating the model on predicting from all 18 types, the testing accuracy is .21.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is .55.
+* PCA: dimension reduction technique that reduces the features of a dataset while preserving as much variance in the data as possible.
 
 ## Discussion on Model Selection
 
@@ -47,7 +48,6 @@ For binary classification between Fire type and Bug type, training and testing a
 
 For the images dataset for binary classification, the model that performs better is the convolutional neural network.  Compared to the feed forward neural network, it makes sense because CNNs are typically used for image data, and FFNs only go forward in their neural networks.  One of the big differences between tuning a CNN model with a target variable with 18 outcomes and a CNN model with a binary target variable is that the last layer for the binary classification can be sigmoid, which is what logistic regression models use.  The binary classification model metrics for training and validation accuracies are shown below for the CNN model.  The testing accuracy is .71.
 
-(image)
 (image)
 
 While neural networks can be accurate, it is a lot more difficult in terms of interpretability.  Tuning hyperparameters, such as the number of hidden layers or the activation functions, can help improve model performance, though it is hard to explain why a hyperparameter's value is best for the situation.
@@ -82,6 +82,7 @@ Testing recall: 0.8095238095238095
 
 Below are the ROC curves for the KNN, random forest, and ensemble models, respectively:
 
+(image)
 (image)
 (image)
 
