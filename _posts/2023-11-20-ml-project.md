@@ -24,13 +24,13 @@ You can also take a look at my [EDA blog post](https://mokuda2.github.io/my386bl
 
 ## Best Models
 
-The models for classifying one of the 18 types had much lower accuracy than comparing between two types.  I will focus more on the performance of the binary classification model.
+The models for classifying one of the 18 types had much lower accuracy than comparing between two types.  I will focus more on the performance of the binary classification models.
 
 ### Image Classification Dataset: Convolutional Neural Network (CNN)
 
-I used a convolutional neural network and a feed forward neural network models.
+I used convolutional neural network and feed forward neural network models.
 
-A CNN is a neural network especially designed for recognizing patterns in image data.  Hyperparameters I used include the activation function, input shape, and number of hidden layers.  When evaluating the model on predicting from all 18 types, the testing accuracy is only .14.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is .71.  The graph below shows the accuracy and loss metrics for both the training and validation datasets.
+A CNN is a neural network especially designed for recognizing patterns in image data.  Hyperparameters I considered include the activation function, input shape, and number of hidden layers.  When evaluating the model on predicting from all 18 types, the testing accuracy is only .14.  When evaluating the model on just two types, specifically Bug vs. Fire, the testing accuracy is .71.  The graph below shows the accuracy and loss metrics for both the training and validation datasets.
 
 ![Figure](https://raw.githubusercontent.com/mokuda2/my386blog/main/assets/images/cnn-graph.png)
 
